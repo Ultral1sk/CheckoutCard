@@ -1,9 +1,9 @@
 import React from "react";
 import CartItem from "./CartItem";
 import { connect } from 'react-redux'
+import { phoneCardClear } from './redux/phoneCard/phoneActionCreator'
 
-
-const CartContainer = ({ cart = [], total }) => {
+const CartContainer = ({ cart = [], total, phoneCardClear }) => {
   if (cart.length === 0) {
     return (
       <section className="cart">
@@ -35,7 +35,7 @@ const CartContainer = ({ cart = [], total }) => {
             total <span>${total}</span>
           </h4>
         </div>
-        <button className="btn clear-btn">clear cart</button>
+        <button onClick={phoneCardClear} className="btn clear-btn">clear cart</button>
       </footer>
     </section>
   );
@@ -48,4 +48,14 @@ const mapStateToProps = (state) => {
 
 }
 
-export default connect(mapStateToProps)(CartContainer) ;
+
+const mapDispatchToProps = (dispatch) => {
+
+  return { phoneCardClear : () => dispatch(phoneCardClear()) }
+
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps)
+  (CartContainer) ;
