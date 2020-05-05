@@ -1,6 +1,11 @@
 import React from "react";
+import { connect } from 'react-redux'
+import { phoneCardRemove } from './redux/phoneCard/phoneActionCreator'
+import { phoneCardIncrese } from './redux/phoneCard/phoneActionCreator'
+import { phoneCardDecrese } from './redux/phoneCard/phoneActionCreator' 
 
-const CartItem = ({ img, title, price, amount }) => {
+
+const CartItem = ({ img, title, price, amount, phoneCardRemove, phoneCardIncrese, phoneCardDecrese }) => {
   return (
     <div className="cart-item">
       <img src={img} alt={title} />
@@ -8,14 +13,16 @@ const CartItem = ({ img, title, price, amount }) => {
         <h4>{title}</h4>
         <h4 className="item-price">${price}</h4>
         {/* remove button */}
-        <button className="remove-btn">remove</button>
+        <button className="remove-btn" onClick={phoneCardRemove}>remove</button>
       </div>
       <div>
         {/* increase amount */}
-        <button className="amount-btn">
+        <button className="amount-btn" onClick={phoneCardIncrese}>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+     
             <path d="M10.707 7.05L10 6.343 4.343 12l1.414 1.414L10 9.172l4.243 4.242L15.657 12z" />
           </svg>
+          asadadsds
         </button>
         {/* amount */}
         <p className="amount">{amount}</p>
@@ -30,4 +37,20 @@ const CartItem = ({ img, title, price, amount }) => {
   );
 };
 
-export default CartItem;
+
+
+const mapDispatchToProps = (dispatch, ownProps ) => {
+
+  const { id, amount } = ownProps
+
+  return { 
+    phoneCardRemove  :  () => dispatch(phoneCardRemove(id)),
+    phoneCardIncrese :  () => dispatch(phoneCardIncrese(id)),
+    phoneCardDecrese :  () => dispatch(phoneCardDecrese(id,amount)),
+  
+  
+  }
+  
+}
+
+export default connect(null,mapDispatchToProps )(CartItem);

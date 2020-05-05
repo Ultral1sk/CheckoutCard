@@ -43,7 +43,7 @@ const CartContainer = ({ cart = [], total, phoneCardClear }) => {
 
 const mapStateToProps = (state) => {
 
-    console.log(state)
+
   return { cart : state.cart , total : state.total }
 
 }

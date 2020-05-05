@@ -1,18 +1,21 @@
 import { INCREASE } from './phoneCardType'
 import { CLEAR }    from './phoneCardType'
+import { DECREASE } from './phoneCardType'
+import { REMOVE }   from './phoneCardType'
 
-export const phoneCardIncrease = () => {
-    return {
-        type : INCREASE,
-     
-    }
+export const phoneCardIncrese = () => {
+    return { type : INCREASE}
+}
+
+export const phoneCardDecrese = () => {
+    return { type : DECREASE}
 
 }
 
-export const phoneCardClear = () => {
-    return {
-        type : CLEAR,
-      
-    }
+export const phoneCardRemove = (id) => {
+    return { type : REMOVE, payload : id }
+}
 
+export const phoneCardClear = () => {
+    return { type : CLEAR, }
 }
