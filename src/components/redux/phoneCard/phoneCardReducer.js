@@ -15,32 +15,35 @@ const initialState = {
 
 const cardReducer = (state = initialState, action) => {
 
-    switch(action.type) {
-        case INCREASE : return {
-         
-            cart : console.log(cartItems.amount) 
-        }
-        case DECREASE : return {
-         
-          
-            
-           
-        
-        }
-        case REMOVE : return {
-            cart : state.cart.filter(item => action.payload !== item.id)
-            // remove item when the index comming from data and the index comming from the array do not match
-        }
-        
-        case CLEAR : return { 
+    if (action.type === INCREASE) {
+        return {
             ...state,
-            cart : state.cart = []
+            cart: console.log(state.cartItems)
         }
-        
-
-        default : return state
+    }
+    if (action.type === DECREASE) {
+        return {
+            ...state,
+            
+        }
     }
 
+    if (action.type === REMOVE) {
+        return {
+            cart: state.cart.filter(item => action.payload !== item.id)
+            // remove item when the index comming from data and the index comming from the array do not match
+        }
+    }
+
+
+    if (action.type === CLEAR) {
+        return {
+            ...state,
+            cart: state.cart = []
+        }
+    }
+
+    return state
 }
 
 export default cardReducer

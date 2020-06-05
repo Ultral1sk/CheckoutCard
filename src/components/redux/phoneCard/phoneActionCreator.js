@@ -17,5 +17,5 @@ export const phoneCardRemove = (id) => {
 }
 
 export const phoneCardClear = () => {
-    return { type : CLEAR, }
+    return { type : CLEAR }
 }

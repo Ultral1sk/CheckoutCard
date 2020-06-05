@@ -22,12 +22,12 @@ const CartItem = ({ img, title, price, amount, phoneCardRemove, phoneCardIncrese
      
             <path d="M10.707 7.05L10 6.343 4.343 12l1.414 1.414L10 9.172l4.243 4.242L15.657 12z" />
           </svg>
-          asadadsds
+          Increase
         </button>
         {/* amount */}
         <p className="amount">{amount}</p>
         {/* decrease amount */}
-        <button className="amount-btn">
+        <button className="amount-btn"  onClick={phoneCardDecrese}>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
             <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
           </svg>
@@ -41,12 +41,12 @@ const CartItem = ({ img, title, price, amount, phoneCardRemove, phoneCardIncrese
 
 const mapDispatchToProps = (dispatch, ownProps ) => {
 
-  const { id, amount } = ownProps
+  const {  amount } = ownProps
 
   return { 
-    phoneCardRemove  :  () => dispatch(phoneCardRemove(id)),
-    phoneCardIncrese :  () => dispatch(phoneCardIncrese(id)),
-    phoneCardDecrese :  () => dispatch(phoneCardDecrese(id,amount)),
+    phoneCardIncrese :  () => dispatch(phoneCardIncrese(amount)),
+    // phoneCardRemove  :  () => dispatch(phoneCardRemove(id)),
+    // phoneCardDecrese :  () => dispatch(phoneCardDecrese(id,amount)),
   
   
   }
