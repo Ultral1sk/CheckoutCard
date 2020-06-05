@@ -1,9 +1,14 @@
 import React from "react";
 import CartItem from "./CartItem";
 import { connect } from 'react-redux'
-import { phoneCardClear } from './redux/phoneCard/phoneActionCreator'
+import { CLEAR, GET_TOTALS } from './redux/phoneCard/phoneCardType'
 
-const CartContainer = ({ cart = [], total, phoneCardClear }) => {
+const CartContainer = ({ cart = [], total,  dispatch }) => {
+
+  React.useEffect(() => {
+    dispatch({ type : GET_TOTALS})
+  })
+
   if (cart.length === 0) {
     return (
       <section className="cart">
@@ -35,27 +40,22 @@ const CartContainer = ({ cart = [], total, phoneCardClear }) => {
             total <span>${total}</span>
           </h4>
         </div>
-        <button onClick={phoneCardClear} className="btn clear-btn">clear cart</button>
+        <button onClick={() => dispatch({ type : CLEAR})} className="btn clear-btn">clear cart</button>
       </footer>
     </section>
   );
 };
 
+
+
+
 const mapStateToProps = (state) => {
 
-
-  return { cart : state.cart , total : state.total }
-
-}
-
-
-const mapDispatchToProps = (dispatch) => {
-
-  return { phoneCardClear : () => dispatch(phoneCardClear()) }
-
-}
+  const { cart, total } = state
+  return { cart, total }
+  }
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps)
+  null)
   (CartContainer) ;

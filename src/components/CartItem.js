@@ -1,11 +1,11 @@
 import React from "react";
 import { connect } from 'react-redux'
-import { phoneCardRemove } from './redux/phoneCard/phoneActionCreator'
-import { phoneCardIncrese } from './redux/phoneCard/phoneActionCreator'
-import { phoneCardDecrese } from './redux/phoneCard/phoneActionCreator' 
+import { DECREASE } from './redux/phoneCard/phoneCardType'
+import { INCREASE } from './redux/phoneCard/phoneCardType' 
+import { REMOVE } from "./redux/phoneCard/phoneCardType";
 
 
-const CartItem = ({ img, title, price, amount, phoneCardRemove, phoneCardIncrese, phoneCardDecrese }) => {
+const CartItem = ({ img, title, price, amount, remove, increase, decrease }) => {
   return (
     <div className="cart-item">
       <img src={img} alt={title} />
@@ -13,11 +13,11 @@ const CartItem = ({ img, title, price, amount, phoneCardRemove, phoneCardIncrese
         <h4>{title}</h4>
         <h4 className="item-price">${price}</h4>
         {/* remove button */}
-        <button className="remove-btn" onClick={phoneCardRemove}>remove</button>
+        <button className="remove-btn" onClick={() => remove()}>remove</button>
       </div>
       <div>
         {/* increase amount */}
-        <button className="amount-btn" onClick={phoneCardIncrese}>
+        <button className="amount-btn" onClick={() => increase()}>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
      
             <path d="M10.707 7.05L10 6.343 4.343 12l1.414 1.414L10 9.172l4.243 4.242L15.657 12z" />
@@ -27,7 +27,7 @@ const CartItem = ({ img, title, price, amount, phoneCardRemove, phoneCardIncrese
         {/* amount */}
         <p className="amount">{amount}</p>
         {/* decrease amount */}
-        <button className="amount-btn"  onClick={phoneCardDecrese}>
+        <button className="amount-btn"  onClick={() => decrease()}>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
             <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
           </svg>
@@ -41,10 +41,13 @@ const CartItem = ({ img, title, price, amount, phoneCardRemove, phoneCardIncrese
 
 const mapDispatchToProps = (dispatch, ownProps ) => {
 
-  const {  amount } = ownProps
+  const { id, amount, total } = ownProps
 
   return { 
-    phoneCardIncrese :  () => dispatch(phoneCardIncrese(amount)),
+    remove   :  () => dispatch({type : REMOVE,   payload : { id }}),
+    increase :  () => dispatch({type : INCREASE, payload : { id }}),
+    decrease :  () => dispatch({type : DECREASE, payload : { id, amount }}),
+
     // phoneCardRemove  :  () => dispatch(phoneCardRemove(id)),
     // phoneCardDecrese :  () => dispatch(phoneCardDecrese(id,amount)),
   
