@@ -18,7 +18,7 @@ Variables
   --clr-grey-1: #102a42;
   --clr-grey-5: #617d98;
   --clr-grey-10: #ffffff;
-  --clr-white: rgb(173, 173, 173);
+  --clr-white: rgb(255, 255, 255);
   --clr-red-dark: rgb(253, 66, 19);
   --clr-red-light: hsl(360, 71%, 66%);
   --ff-primary: "Catamaran", sans-serif;
@@ -132,6 +132,8 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  color: white;
+  
 }
 nav h3 {
   margin-bottom: 0;
