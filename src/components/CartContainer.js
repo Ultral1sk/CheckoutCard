@@ -9,6 +9,9 @@ const CartContainer = ({ cart = [], total,  dispatch }) => {
     dispatch({ type : GET_TOTALS})
   })
 
+  // if we don't set a condtition like this the program will break because it runs before we map the cards
+  // it will say can not map unidentifiet
+
   if (cart.length === 0) {
     return (
       <section className="cart">
@@ -20,18 +23,21 @@ const CartContainer = ({ cart = [], total,  dispatch }) => {
       </section>
     );
   }
+  
   return (
     <section className="cart">
       {/* cart header */}
       <header>
         <h2>your bag</h2>
       </header>
+
       {/* cart items */}
       <article>
-        {cart.map(item => {
+        {cart.map(item => {    
           return <CartItem key={item.id} {...item} />;
         })}
       </article>
+      
       {/* cart footer */}
       <footer>
         <hr />

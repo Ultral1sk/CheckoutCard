@@ -22,7 +22,6 @@ const CartItem = ({ img, title, price, amount, remove, increase, decrease }) => 
      
             <path d="M10.707 7.05L10 6.343 4.343 12l1.414 1.414L10 9.172l4.243 4.242L15.657 12z" />
           </svg>
-          Increase
         </button>
         {/* amount */}
         <p className="amount">{amount}</p>
@@ -40,13 +39,14 @@ const CartItem = ({ img, title, price, amount, remove, increase, decrease }) => 
 
 
 const mapDispatchToProps = (dispatch, ownProps ) => {
-
+  console.log(`ownprops`,ownProps)
   const { id, amount, total } = ownProps
 
   return { 
     remove   :  () => dispatch({type : REMOVE,   payload : { id }}),
-    increase :  () => dispatch({type : INCREASE, payload : { id }}),
+    increase :  () => dispatch({type : INCREASE, payload : { id, total }}),
     decrease :  () => dispatch({type : DECREASE, payload : { id, amount }}),
+
 
     // phoneCardRemove  :  () => dispatch(phoneCardRemove(id)),
     // phoneCardDecrese :  () => dispatch(phoneCardDecrese(id,amount)),
